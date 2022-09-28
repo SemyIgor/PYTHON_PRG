@@ -258,6 +258,43 @@ else:
 
 > `При выполнении одного из условий цепочки, остальные части цепочки не будут выполняться`
 
+#### _<u>Тернарный оператор</u>_
+
+_Первый вариант_
+
+```Python
+is_nice = True
+state = "nice" if is_nice else "not nice"
+```
+
+_Второй вариант (использование кортежей)_
+
+```Python
+var = (if_test_is_false, if_test_is_true)[test] # Шаблон
+
+nice = True
+personality = ("вредная", "добрая")[nice]
+print("Кошка ", personality)
+# Вывод: Кошка добрая
+```
+
+_Сокращенный тернарный оператор_
+
+```Python
+True or "Some"
+# Вывод: True
+
+False or "Some"
+# Вывод: 'Some'
+```
+
+```Python
+func_output = None
+msg = func_output or "Не было возвращено данных"
+print(msg)
+# Вывод: Не было возвращено данных
+```
+
 #### _<u>while</u>_
 
 ```Python

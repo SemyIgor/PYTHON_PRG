@@ -1,14 +1,19 @@
-﻿a = 9
-b = 5
-c = 9
+﻿# Даны три целых числа.
+# Определите, сколько среди них совпадающих. Программа должна вывести одно из чисел:
+# 3 (если все совпадают), 2 (если два совпадает) или 0 (если все числа различны).
 
-x = a
+a = int(input('Введите a = '))
+b = int(input('Введите b = '))
+c = int(input('Введите c = '))
+
 count = 1
-if x == b and x == c:
+if a == b and a == c and b == c:
     print(3)
-elif x == b or x == c:
+elif a == b and a != c:
     print(2)
-elif b == c:
+elif b == c and b != a:
+    print(2)
+elif a == c and a != b:
     print(2)
 else:
-    print(1)
+    print(0)

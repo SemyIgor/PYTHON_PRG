@@ -520,6 +520,22 @@ help(text.islower)
    ```Python
    data.close()
    ```
+4. Второй способ открытия файла (не требует его отдельного закрытия по завершении работы)
+
+   ```Python
+   with open('file.txt', 'w') as data:
+       data.write('line1\n')
+       data.write('line2\n')
+   ```
+
+5. Ещё можно определить путь к файлу отдельно:
+   ```Python
+   path = 'file.txt'
+   data = open(path, 'r', encoding='utf-8-sig') # Убирает сигнатуру \ufeff из строки
+   for line in data:
+       print(line)
+   data.close()
+   ```
 
 ## РАБОТА С ФУНКЦИЯМИ ИЗ ДРУГИХ ФАЙЛОВ
 
@@ -633,6 +649,62 @@ red, green, blue = t # Распаковываем кортеж в перемен
 print('r:{} g:{} b:{}'.format(red, green, blue)) # r:red g:green b:blue
 ```
 
+**Ещё примеры**
+
+```Python
+# Объявляем кортеж
+tuple_list = ()
+# Границы диапазона цикла
+list_beg = 1
+list_end = 6
+# Создаём кортеж в цикле
+for i in range(list_beg, list_end):
+    tuple_list = tuple_list + (i, i ** 2) # Метод сложения (кортеж пересоздаётся, а не изменяется)
+print(tuple_list) # Печать кортежа (числа и их квадраты)
+# (1, 1, 2, 4, 3, 9, 4, 16, 5, 25)
+```
+
+```Python
+# В цикле дописываем к кортежу квадраты чисел (на нечётных местах)
+for i in range(0, len(tuple_list)):
+    if i % 2:
+    tuple_list = tuple_list + tuple_list[i:i+1]
+print(tuple_list)
+# (1, 1, 2, 4, 3, 9, 4, 16, 5, 25, 1, 4, 9, 16, 25)
+```
+
+```Python
+# Срез кортежа
+# "Обрезаем" кортеж, оставив только дописанную часть (квадраты чисел)
+tuple_list = tuple_list[(list_end - list_beg) * 2:]
+print(tuple_list)
+# (1, 4, 9, 16, 25)
+```
+
+**Создаём список кортежей**
+
+```Python
+tuple_listx = [] # Создаём список
+for i in range(1, 6):
+    tuple_listx.append((i, i**2)) # Добавляем в СПИСОК кортежи в цикле
+print(f'tuple_listx = {tuple_listx}')
+# tuple_listx = [(1, 1), (2, 4), (3, 9), (4, 16), (5, 25)]
+
+print(tuple_listx[4]) # Индексы элементов 0, 1, 2, 3, 4
+# (5, 25) - элекент с индексом 4 (5-й элемент)
+```
+
+**Обращение к элементу кортежа в списке кортежей**
+
+```Python
+print(tuple_listx)
+# [(1, 1), (2, 4), (3, 9), (4, 16), (5, 25)]
+print(tuple_listx[3][1])  # Кортеж с индексом 3 (4, 16), элемент 1 (16)
+# 16
+print(tuple_listx[3][0])  # Кортеж с индексом 3 (4, 16), элемент 0 (4)
+# 4
+```
+
 ## СЛОВАРИ
 
 Неупорядоченные коллекции произвольных объектов с доступом по ключу
@@ -653,28 +725,33 @@ print(dictionary[2])  # ←
 ```
 
 ```Python
+# Ключи словаря
 print('\n')
 for k in dictionary.keys():
     print(k)  # Распечатываем ключи словаря # up
-#                                           # 2
-print('\n') #                               # down
-for k in dictionary: #                      # right
+                                            # 2
+print('\n')                                 # down
+for k in dictionary:                        # right
     print(k)  # Распечатываем ключи словаря
 
+# Элементы словаря
 print('\n')
 for k in dictionary.values():
     print(k)  # Распечатываем элементы словаря  # ↑
 #                                               # ←
-print('\n') #                                   # ↓
-for v in dictionary: #                          # →
+print('\n')                                     # ↓
+for v in dictionary:                            # →
     print(dictionary[v])  # Распечатываем элементы словаря
 
+# Удаляем элемент словаря по ключу
 del dictionary['right']  # Удаляем элемент по ключу 'right'
 print(dictionary)
 
+# Добавляем элемент в словарь по ключу
 dictionary['right'] = '→'  # Добавляем элемент по ключу 'right'
 print(dictionary)
 
+# Печатаем пару словаря ключ-элемент
 print('\n')
 for item in dictionary:
     # Печатаем ключ и значение элемента:

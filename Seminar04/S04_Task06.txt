@@ -1,0 +1,4 @@
+﻿3
+apple orange banana banana orange
+cucumber potato tomato onion apple
+banana orange

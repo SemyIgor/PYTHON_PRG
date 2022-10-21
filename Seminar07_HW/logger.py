@@ -17,10 +17,21 @@ def get_txt_data():
         txt_book = []
         while True:  # Считываем по одному абоненту
             txt_book_script =\
-                (file.readline().rstrip(),
+                (file.readline().rstrip(),  # Убираем символ перевода строки
                     file.readline().rstrip(),
                     file.readline().rstrip(),
                     file.readline().rstrip())
+            if txt_book_script[0] == '':
+                break
+            txt_book.append(txt_book_script)
+    return txt_book
+
+
+def get_csv_data():
+    with open('Seminar07_HW\ph1.csv', 'r', encoding='utf-8-sig') as file:
+        txt_book = []
+        while True:  # Считываем по одному абоненту
+            txt_book_script = tuple(file.readline().rstrip().split(';'))
             if txt_book_script[0] == '':
                 break
             txt_book.append(txt_book_script)
@@ -31,8 +42,6 @@ def get_json_data():
     with open('Seminar07_HW\ph1.json', 'r', encoding='utf-8-sig') as file:
         txt_book = json.load(file)
     return txt_book
-
-# data = json.load(f)
 
 
 def book_csv_convertor(txt_data):
